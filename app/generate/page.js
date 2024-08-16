@@ -61,7 +61,10 @@ export default function Generate() {
         >
           Generate Flashcards
         </Button>
-        {flashcards.length > 0 && (
+        
+      </Box>
+      
+      {flashcards.length > 0 && (
   <Box sx={{ mt: 4 }}>
     <Typography variant="h5" component="h2" gutterBottom>
       Generated Flashcards
@@ -82,9 +85,6 @@ export default function Generate() {
     </Grid>
   </Box>
 )}
-      </Box>
-      
-      {/* We'll add flashcard display here */}
     </Container>
   )
 }
