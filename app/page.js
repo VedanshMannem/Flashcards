@@ -1,23 +1,49 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
 
-export default function Home() {
+import { useState } from 'react'
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+} from '@mui/material'
+
+export default function Generate() {
+  const [text, setText] = useState('')
+  const [flashcards, setFlashcards] = useState([])
+
+  const handleSubmit = async () => {
+    // We'll implement the API call here
+  }
+
   return (
-
-    <AppBar position="static">
-  <Toolbar>
-    <Typography variant="h6" style={{flexGrow: 1}}>
-      Flashcard SaaS
-    </Typography>
-    <SignedOut>
-      <Button color="inherit" href="/sign-in">Login</Button>
-      <Button color="inherit" href="/sign-up">Sign Up</Button>
-    </SignedOut>
-    <SignedIn>
-      <UserButton />
-    </SignedIn>
-  </Toolbar>
-</AppBar>
-
-  );
+    <Container maxWidth="md">
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Generate Flashcards
+        </Typography>
+        <TextField
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          label="Enter text"
+          fullWidth
+          multiline
+          rows={4}
+          variant="outlined"
+          sx={{ mb: 2 }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          fullWidth
+        >
+          Generate Flashcards
+        </Button>
+      </Box>
+      
+      {/* We'll add flashcard display here */}
+    </Container>
+  )
 }
