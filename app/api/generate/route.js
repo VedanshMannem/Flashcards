@@ -12,42 +12,27 @@ You should return in the following JSON format:
       "back": "Back of the card"
     }
   ]
-}`
-
-
+}
+`
+      
 export async function POST(req) {
-    const openai = new OpenAI()
-    const data = await req.text()
-  
-    const completion = await openai.chat.completions.create({
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: data },
-      ],
-      model: 'gpt-4o',
-      response_format: { type: 'json_object' },
-    })
-  
-    // We'll process the API response in the next step
-  }
+  const openai = new OpenAI()
+  const data = await req.text()
 
+  const completion = await openai.chat.completions.create({
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: data },
+    ],
+    model: 'gpt-4o',
+    response_format: { type: 'json_object' },
+  })
+  
+  console.log(completion.choices[0].message.content)
+  // Parse the JSON response from the OpenAI API
+  const flashcards = JSON.parse(completion.choices[0].message.content)
 
-  export async function POST(req) {
-    const openai = new OpenAI()
-    const data = await req.text()
-  
-    const completion = await openai.chat.completions.create({
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: data },
-      ],
-      model: 'gpt-4o',
-      response_format: { type: 'json_object' },
-    })
-  
-    // Parse the JSON response from the OpenAI API
-    const flashcards = JSON.parse(completion.choices[0].message.content)
-  
-    // Return the flashcards as a JSON response
-    return NextResponse.json(flashcards.flashcards)
-  }
+  // Return the flashcards as a JSON response
+  return NextResponse.json(flashcards.flashcards)
+}
+
