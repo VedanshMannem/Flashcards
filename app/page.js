@@ -91,8 +91,8 @@ export default function Home() {
           </Typography>
           <ClerkProvider>
             <SignedOut>
-              <Button color="inherit" href="/sign-in">Login</Button>
-              <Button color="inherit" href="/sign-up">Sign Up</Button>
+              <Button color="inherit" href="./sign-in/sign-in">Login</Button>
+              <Button color="inherit" href="./sign-up/sign-up">Sign Up</Button>
             </SignedOut>
             <SignedIn>
             <Button color="inherit" href="/generate">Generate</Button>
@@ -177,7 +177,7 @@ export default function Home() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button variant="contained" color="primary" fullWidth>
+                  <Button variant="contained" color="primary" fullWidth href="./sign-up/sign-up">
                     Sign Up
                   </Button>
                 </CardActions>

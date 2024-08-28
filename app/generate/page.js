@@ -25,6 +25,7 @@ import {
   AppBar,
   Toolbar
 } from '@mui/material'
+import { ClerkProvider } from '@clerk/nextjs'
 
 const theme = createTheme({
   palette: {
@@ -69,14 +70,15 @@ const theme = createTheme({
 });
 
 export default function Generate() {
-  const {isLoaded, isSignedIn, user} = useUser()
+  
+  const {isLoaded, isSignedIn, user} = <ClerkProvider>useUser()</ClerkProvider>
   const [flashcards, setFlashcards] = useState([])
   const [flipped, setFlipped] = useState([])
   const [text, setText] = useState('')
   const [name, setName ] = useState('')
   const [open, setOpen] = useState(false)
   const router = useRouter()
-
+  
   
   const handleSubmit = async () => {
     fetch('api/generate', {
@@ -136,6 +138,7 @@ export default function Generate() {
   }
 
   return( 
+    <ClerkProvider>
     <ThemeProvider theme={theme}>
     <Container maxWidth="100vw">
       <AppBar position="static" sx={{ mb: 4 }}>
@@ -144,8 +147,8 @@ export default function Generate() {
           FlashPass
           </Typography>
             <SignedOut>
-              <Button color="inherit" href="/sign-in">Login</Button>
-              <Button color="inherit" href="/sign-up">Sign Up</Button>
+              <Button color="inherit" href="../sign-in/sign-in">Login</Button>
+              <Button color="inherit" href="../sign-up/sign-up">Sign Up</Button>
             </SignedOut>
             <SignedIn>
               <Button color="inherit" href="/">Home</Button>
@@ -296,5 +299,6 @@ export default function Generate() {
     </Container>
     </Container>
     </ThemeProvider>
+    </ClerkProvider>
   )
 }

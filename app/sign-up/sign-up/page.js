@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container, Box, Typography, AppBar, Toolbar, Button, Paper } from '@mui/material';
-import { SignUp } from '@clerk/nextjs';
 import Link from 'next/link';
+import { ClerkProvider, SignUp } from '@clerk/nextjs';
+
 
 export default function SignUpPage() {
   return (
@@ -11,7 +12,7 @@ export default function SignUpPage() {
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
             Flashcard SaaS
           </Typography>
-          <Button color="inherit" href="/sign-in">Login</Button>
+          <Button color="inherit" href="../sign-in/sign-in">Login</Button>
         </Toolbar>
       </AppBar>
 
@@ -28,8 +29,11 @@ export default function SignUpPage() {
         <Typography variant="h6" component="p" sx={{ mb: 4, color: '#64b5f6' }}>
           Create and manage flashcards effortlessly
         </Typography>
-
-        <SignUp />
+        <ClerkProvider>
+            <SignUp />
+        </ClerkProvider>
+        
+        
       </Box>
     </Container>
   );
