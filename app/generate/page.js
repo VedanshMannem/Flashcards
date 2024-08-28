@@ -81,12 +81,12 @@ export default function Generate() {
   
   
   const handleSubmit = async () => {
-    fetch('api/generate', {
+    fetch('/api/generate', {
       method: 'POST',
       body: text,
     })
-      .then((res) => res.json())
       .then((data) => setFlashcards(data))
+      .catch((error) => console.error('Error:', error));
   }
 
   const handleCardClick = (id) => {
